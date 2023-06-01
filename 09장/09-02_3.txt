@@ -1,0 +1,17 @@
+Private Sub Worksheet_Activate()
+   Dim i As Long
+   
+   With lstSheet
+      .Clear
+      .Font.Size = 11
+      .Width = 213
+      For i = 1 To ThisWorkbook.Sheets.Count
+         Select Case ThisWorkbook.Sheets(i).Name
+            Case "Main", "@작업시트"
+            Case Else
+               .AddItem ThisWorkbook.Sheets(i).Name
+         End Select
+      Next
+      If .ListCount > 0 Then .ListIndex = .ListCount - 1
+   End With
+End Sub

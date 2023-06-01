@@ -1,0 +1,16 @@
+Private Sub cmd셀에넣기_Click()
+   Dim numK As Integer
+   
+   If Me.txt그림경로 = "" Then Exit Sub
+   numK = ActiveSheet.Pictures.Count
+   
+   ActiveSheet.Pictures.Insert (Me.txt그림경로)
+   ActiveSheet.Pictures(numK + 1).Select
+   With Selection
+      .Left = ActiveCell.Left + 10
+      .Top = ActiveCell.Top
+      .Width = ActiveCell.Width - 10
+      .Height = ActiveCell.Height
+      .Placement = xlMoveAndSize  
+   End With
+End Sub

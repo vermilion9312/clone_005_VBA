@@ -1,0 +1,8 @@
+Private Sub UserForm_Initialize()
+   With Me.lst惑前
+      .ColumnCount = 3
+      .ColumnWidths = "60;150;100"
+      .ColumnHeads = True
+      .RowSource = "力前格废!A4:D82"
+   End With
+End Sub

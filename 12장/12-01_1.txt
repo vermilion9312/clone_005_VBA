@@ -1,0 +1,7 @@
+Private Sub Workbook_Open()
+   Application.MacroOptions Macro:="fn세금", _
+      Description:="급여와 부양가족수를 입력 받아 세금 계산", _
+      Category:="길벗VBA함수", _
+      ArgumentDescriptions:=Array("정기적인 월 급여액 입력", _
+                  "본인을 제외한 부양가족 수 입력 최대 10명까지 반영")
+End Sub

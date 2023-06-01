@@ -1,0 +1,9 @@
+Cells.Clear
+
+Range("B2:D2").Interior.ThemeColor = XlThemeColor.xlThemeColorAccent6
+
+Range("B3:D3").Interior.ThemeColor = 10
+Range("B3:D3").Interior.TintAndShade = 0.5
+
+Range("B4:D4").Interior.ThemeColor = 10
+Range("B4:D4").Interior.TintAndShade = 0.8

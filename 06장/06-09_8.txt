@@ -1,0 +1,6 @@
+Sheets("기초자료").PrintPreview
+Sheets(Array("전체자료", "기초자료")).PrintPreview
+
+MsgBox ActivePrinter
+Sheets("전체자료").PrintOut From:=1, To:=2, Preview:=True
+Sheets("전체자료").PrintOut

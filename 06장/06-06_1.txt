@@ -1,0 +1,7 @@
+Range("A3").CurrentRegion.SpecialCells(xlCellTypeFormulas).Select
+Range("A3").CurrentRegion.SpecialCells(xlCellTypeFormulas, xlErrors).Select
+
+Range("C3:C13").SpecialCells(xlCellTypeBlanks).Select
+ActiveSheet.UsedRange.SpecialCells(xlCellTypeLastCell).Select
+
+Sheets("9월").Range("A3").CurrentRegion.SpecialCells(xlCellTypeBlanks).Style = "강조색1"

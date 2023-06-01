@@ -1,0 +1,14 @@
+Function fn과락체크(중간평가, 기말평가)
+   Dim Avg As Single, Result As String
+   
+   Avg = (중간평가 + 기말평가) / 2
+   If 중간평가 < 40 Or 기말평가 < 40 Then
+      Result = "과락"
+   ElseIf Avg >= 60 Then
+      Result = "합격"
+   Else
+      Result = "불합격"
+   End If
+      
+   fn과락체크 = Result
+End Function

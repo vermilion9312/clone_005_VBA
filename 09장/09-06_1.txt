@@ -1,0 +1,8 @@
+Private Sub cmd신규_Click()
+   Call sb컨트롤잠금(False)
+   Call sb컨트롤내용비우기
+
+   Me.txt고객코드 = "S" & Format(Range("nmMax코드") + 1, "00000")
+   Me.txt성명.SetFocus
+   Call sb버튼표시(False)
+End Sub

@@ -1,0 +1,29 @@
+Sub For_Ex1()
+   Dim i As Long
+   Range("A1").Select
+   ActiveCell.Resize(, 10).Clear
+   For i = 0 To 9
+      ActiveCell.Offset(0, i) = i + 1
+      ActiveCell.Offset(0, i).Font.Color = vbGreen
+   Next i
+End Sub
+
+Sub For_Ex2()
+   Dim i As Long
+   Range("A2").Select
+   ActiveCell.Resize(, 10).Clear
+   For i = 0 To 9 Step 2
+      ActiveCell.Offset(0, i) = i + 1
+      ActiveCell.Offset(0, i).Font.Color = vbRed
+   Next i
+End Sub
+
+Sub For_Ex3()
+   Dim i As Long
+   Range("A3").Select
+   ActiveCell.Resize(, 10).Clear
+   For i = 9 To 0 Step -2
+      ActiveCell.Offset(0, i) = i + 1
+      ActiveCell.Offset(0, i).Font.Color = vbBlue
+   Next i
+End Sub

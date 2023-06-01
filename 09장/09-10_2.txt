@@ -1,0 +1,22 @@
+Private Sub cmd삭제_Click()
+   Dim i As Long, R As Long, iOK As Integer
+   Dim strKey
+  
+   iOK = MsgBox("선택하신 자료들을  삭제하시겠습니까?", vbYesNo + vbQuestion, "삭제확인")
+   If iOK = vbYes Then
+      With Me.lst예약명단
+         For i = .ListCount - 1 To 0 Step -1
+            If .Selected(i) Then
+               strKey = Me.txt강좌코드 & .List(i, 0)
+               If Application.CountIf(Range("tbl예약현황[Key]"), strKey) > 0 Then
+                  R = Application.Match(strKey, Range("tbl예약현황[Key]").EntireColumn, 0)
+                  Sheets("예약현황").Rows(R).Delete Shift:=xlUp
+               End If
+            End If
+         Next
+      End With
+      
+      MsgBox "삭제가 완료되었습니다.", vbInformation
+      Call sb예약명단출력
+   End If
+End Sub

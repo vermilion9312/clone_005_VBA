@@ -1,0 +1,15 @@
+Sub Arrayr_Ex1()
+   Dim sName(5) As String
+   Dim i As Integer
+   
+   For i = 0 To 5
+      sName(i) = InputBox(i & "번째 이름?", "이름 기억")
+   Next
+   
+   On Error Resume Next
+   Do
+      i = InputBox("몇번째 이름을 찾을까요?" & vbCrLf & _
+               "99를 입력하면 작업을 종료합니다.", "이름 찾기")
+      MsgBox sName(i)
+   Loop While i <> 99
+End Sub

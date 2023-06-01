@@ -1,0 +1,28 @@
+﻿<!-- Excel 2010 이상 버전에서 사용 -->
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui"  >
+<ribbon>
+  <tabs>
+  <!-- 리본 탭의 [보기] 뒤에 탭 추가 -->
+  <tab id="Tab1" label="길벗 매크로" insertAfterMso="TabView">
+  <!-- 리본 탭 중 개발도구의 코드 그룹을 추가 -->
+  <group idMso="GroupCode" />
+  <group id="Group1" label="시트 관리">
+    <button id="Button1" label="시간표시" size="large" onAction="RibbonControl_Click" 
+            imageMso="Heart" supertip="현재 시간을 표시합니다." />
+    <button id="Button2" label="날짜표시" size="normal" onAction="RibbonControl_Click" 
+            imageMso="HappyFace" supertip="현재 날짜를 표시합니다." />
+    <button id="Button3" label="기타 작업1" size="normal" onAction="RibbonControl_Click" 
+            imageMso="Diamond" supertip="기타 작업1 를 실행합니다." />
+    <button id="Button4" label="기타 작업2" size="normal" onAction="RibbonControl_Click" 
+            imageMso="Organizer" supertip="기타 작업2 를 실행합니다." />
+  </group>
+  <group id="Group2" label="복사">
+    <control idMso="Copy" label="복사"   size="large" />
+    <control idMso="CopyAsPicture"   imageMso="Camera" label="그림복사"   size="large" />
+    <control idMso="PasteValues" label="값만붙여넣기" />
+    <control idMso="PasteAsPicture" />
+  </group>
+  </tab>
+  </tabs>
+</ribbon>
+</customUI>

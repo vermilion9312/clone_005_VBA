@@ -1,0 +1,27 @@
+Sub sb거래처목록내용만들기()
+   Dim rngT As Range
+   Dim i As Long, strW As String
+
+   Range("nm거래처_조건").Cells(2, 1) = "*" & Me.txtFind & "*"
+   Range("tbl거래처[#All]").AdvancedFilter Action:=xlFilterCopy, _
+        CriteriaRange:=Range("nm거래처_조건"), _
+        CopyToRange:=Range("nm거래처_출력"), Unique:=False
+        
+   Set rngT = Range("nm거래처_출력").CurrentRegion
+   
+   With Me.lst거래처
+      .ColumnCount = rngT.Columns.Count
+      For i = 1 To .ColumnCount
+         strW = strW & "; " & rngT.Columns(i).Width
+      Next
+      .ColumnWidths = Mid(strW, 2)
+      .ColumnHeads = True
+      If rngT.Rows.Count = 1 Then
+         .RowSource = ""
+      Else
+         .RowSource = rngT.Offset(1, 0).Resize(rngT.Rows.Count - 1).Address(External:=True)
+      End If
+      If .ListCount > 0 Then .ListIndex = .ListCount - 1
+   End With
+
+End Sub

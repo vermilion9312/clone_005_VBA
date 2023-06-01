@@ -1,0 +1,18 @@
+Private Sub cmdOk_Click()
+   Dim rngData As Range
+   Dim sName As String, sPw As String
+   
+   Set rngData = Sheets("암호확인").Range("B4:D8")
+On Error Resume Next
+   sPw = Application.VLookup(Me.cboID, rngData, 2, 0)
+   sName = Application.VLookup(Me.cboID, rngData, 3, 0)
+   If Err.Number <> 0 Then
+      MsgBox "해당 ID는 존재하지 않습니다.", vbCritical, "ID오류"
+      Exit Sub
+   End If
+   If sPw = Me.txtPW Then
+      MsgBox sName & "님 반갑습니다."
+   Else
+      MsgBox "암호가 틀렸네요", vbCritical, "암호오류"
+   End If
+End Sub

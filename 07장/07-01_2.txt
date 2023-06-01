@@ -1,0 +1,10 @@
+Sub IF_Ex2()
+   Dim Score As Long, Result As String
+   
+   Score = InputBox("점수를 입력하세요.", "입력")
+   If Score >= 70 Then
+      Result = "합격"
+   End If
+   
+   MsgBox "결과 :" & Result
+End Sub

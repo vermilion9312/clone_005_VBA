@@ -1,0 +1,8 @@
+Sub IF_Ex6()
+   Dim Score As Long, Result As String
+   
+   Score = InputBox("점수를 입력하세요.", "입력")
+   Result = IIf(Score >= "합격", "불합격")
+   
+   MsgBox "입력 점수: " & Score & vbCrLf & "결과 :" & Result
+End Sub

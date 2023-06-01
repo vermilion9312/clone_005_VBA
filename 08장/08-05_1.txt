@@ -1,0 +1,16 @@
+Private Sub lst사용금액_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+   With Me.lst상품
+      .ColumnCount = 2
+      .ColumnWidths = "120;50"
+      .ColumnHeads = True
+      Select Case Me.lst사용금액.ListIndex
+         Case 0
+            .RowSource = "상품종류!A4:B12"
+         Case 1
+            .RowSource = "상품종류!D4:E14"
+         Case 2
+            .RowSource = "상품종류!G4:H19"
+      End Select
+      .ListIndex = 0
+   End With
+End Sub

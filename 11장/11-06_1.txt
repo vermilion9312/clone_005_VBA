@@ -1,0 +1,56 @@
+Sub sbExcelToPowerPoint()
+    Dim PPTApp As Object, Presentation1 As Object, Slide1 As Object
+   
+    Dim SlideNum As Integer
+    Dim ChartK As ChartObject
+    Dim sh As Worksheet
+    
+    Set sh = Sheets("평가분석")
+    
+    Set PPTApp = CreateObject("PowerPoint.Application")
+    
+    With PPTApp
+        .WindowState = 3 '--// 최대화
+        Set Presentation1 = PPTApp.Presentations.Add
+    End With
+         
+   SlideNum = Presentation1.Slides.Count + 1
+   Set Slide1 = Presentation1.Slides.Add(SlideNum, 1) '--//제목 슬라이드
+   Presentation1.slidemaster.Background.Fill.PresetTextured 15 '--//양피지
+   
+   With PPTApp.ActiveWindow
+      .View.GotoSlide SlideNum
+      .Selection.SlideRange.Shapes(1).Select
+      .Selection.TextRange.Text = "강의 평가 분석"
+      .Selection.SlideRange.Shapes(2).Select
+      .Selection.TextRange.Text = Range("nm강사").Value & Chr(10) & Chr(10) & Date
+      
+      SlideNum = Presentation1.Slides.Count + 1
+      Set Slide1 = Presentation1.Slides.Add(SlideNum, 16) '--//제목 및 내용 슬라이드
+      .View.GotoSlide SlideNum
+      .Selection.SlideRange.Shapes(1).Select
+      .Selection.TextRange.Text = sh.Range("A2").Value
+      '--// 표만 복사하기 위해, 차트 및 ActiveX 컨트롤 숨기기
+      Call sb차트및컨트롤표시(sh, False)
+      
+      sh.Range("A4:I19").Copy
+      .View.Paste
+      
+      Call sb차트및컨트롤표시(sh, True)
+      For Each ChartK In ActiveSheet.ChartObjects
+         If ChartK.Name = "분석차트" Then
+            SlideNum = Presentation1.Slides.Count + 1
+            Set Slide1 = Presentation1.Slides.Add(SlideNum, 12)
+            .View.GotoSlide SlideNum
+            sh.ChartObjects("분석차트").Copy
+            .View.Paste
+         End If
+      Next
+      
+      Application.CutCopyMode = False
+
+      .ViewType = 7 '--//슬라이드 보기 상태를 여러 슬라이드로 변경
+
+   End With
+   PPTApp.Activate
+End Sub

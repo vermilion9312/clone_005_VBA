@@ -1,0 +1,29 @@
+﻿<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+<!-- Excel 2010 이상 버전에서 사용 / -->
+<ribbon>
+<tabs>
+<!-- 리본 탭의 [보기] 뒤에 탭 추가 / -->
+<tab id="Tab1" label="길벗 매크로" insertAfterMso="TabView">
+<!-- 리본 탭 중 개발도구의 코드 그룹을 추가 / -->
+<group idMso="GroupCode" />
+<group id="Group1" label="시트 관리">
+<button id="Button1" label="그룹분리" size="large" onAction="run_sb그룹별시트분리" imageMso="DesignXml" supertip="그룹별 시트 분리" />
+<button id="Button2" label="시트관리" size="normal" onAction="run_sb시트관리" imageMso="CodeEdit" supertip="시트 정렬 및 삽입 삭제" />
+<button id="Button3" label="파일목록" size="normal" onAction="run_sb파일목록표시" imageMso="FieldList" supertip="특정 폴더안의 파일 정보 목록 생성" />
+<button id="Button4" label="하위폴더 포함 파일목록" size="normal" onAction="run_sb파일목록표시_하위폴더포함" imageMso="Organizer" supertip="특정 폴더안의 파일(하위 폴더 포함) 정보 목록 생성" />
+</group>
+<group id="Group2" label="파일관리">
+<button id="Button21" label="모두닫기" size="large" onAction="run_sbClose" imageMso="Fish" supertip="현재 열려있는 엑셀 문서를 모두 닫음" />
+<control idMso="FileClose" label="현재 파일 닫기" size="normal" />
+<control idMso="PrintPreviewFullScreen" size="normal" />
+</group>
+<group id="Group3" label="창관리">
+<control idMso="WindowNew" />
+<control idMso="WindowsArrangeAll" />
+<control idMso="WindowSplitToggle" />
+<control idMso="WindowSwitchWindowsMenuExcel" />
+</group>
+</tab>
+</tabs>
+</ribbon>
+</customUI>

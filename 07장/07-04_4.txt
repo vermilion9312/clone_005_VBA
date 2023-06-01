@@ -1,0 +1,28 @@
+'--// ForEach 문을 이용한 짝수 행에 색 칠하기
+Sub ForEach_Ex2()
+   Dim rngC As Range, rngAll As Range
+   
+   Set rngAll = Application.InputBox("작업범위를 선택하세요.", Default:=ActiveCell.Address, Type:=8)
+   rngAll.ClearFormats
+   
+   For Each rngC In rngAll
+      If (rngC.Row Mod 2) = 0 Then
+         rngC.Interior.Color = vbYellow
+      End If
+   Next rngC
+End Sub
+
+'--// For 문을 이용한 짝수 행에 색 칠하기
+Sub For_CellInterior()
+   Dim i As Long
+   Dim rngAll As Range
+   
+   Set rngAll = Application.InputBox("작업범위를 선택하세요.", Default:=ActiveCell.Address, Type:=8)
+   rngAll.ClearFormats
+   
+   For i = 1 To rngAll.Cells.Count
+      If (rngAll.Cells(i).Row Mod 2) = 0 Then
+         rngAll.Cells(i).Interior.Color = vbYellow
+      End If
+   Next i
+End Sub

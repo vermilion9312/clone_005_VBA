@@ -1,0 +1,55 @@
+Sub sbExcel_Import()
+   Dim fn As Variant
+   Dim rngX As Range, rngK As Range
+   Dim wkBook As Workbook, sh As Worksheet
+   Dim strName As String
+   Dim i As Long, R As Long
+
+   fn = Application.GetOpenFilename( _
+       filefilter:="엑셀파일,*.xls*", _
+       Title:="가져올 파일 선택", MultiSelect:=True)
+
+On Error Resume Next
+  If fn <> False Then Else Exit Sub
+On Error GoTo 0
+   Application.ScreenUpdating = False
+   Application.Calculation = xlCalculationManual
+  
+   Set sh = ThisWorkbook.Sheets("설문자료")
+   For i = 1 To UBound(fn)
+      Set wkBook = Workbooks.Open(fn(i), False, True)
+      strName = ""
+    
+   On Error Resume Next
+      strName = wkBook.Sheets("결과").Name
+   On Error GoTo End_Rtn
+   
+      If strName <> "" Then
+         Set rngK = wkBook.Sheets("결과").Range("A1").CurrentRegion
+         rngK.Offset(1, 0).Resize(rngK.Rows.Count - 1).Copy
+         
+         R = sh.ListObjects("tbl설문자료").ListRows.Count + 1
+         Set rngX = sh.Range("tbl설문자료").Cells(R, 2)
+         rngX.PasteSpecial xlPasteValues
+         Application.CutCopyMode = False
+         
+         Set rngX = rngX.Offset(0, -1).Resize(rngK.Rows.Count - 1, 1)
+         rngX = Mid(fn(i), InStrRev(fn(i), "\") + 1)
+         
+         '--// 중복자료 제거 : 중복 기준(교육일, 과목, 강사, 담당자, 회사, 응답자)
+         sh.Range("tbl설문자료[#ALL]").RemoveDuplicates _
+                     Columns:=Array(2, 3, 4, 5, 6, 7), Header:=xlYes
+        
+      End If
+      wkBook.Close False
+   Next i
+
+End_Rtn:
+   Sheets("평가분석").Select
+   Application.ScreenUpdating = True
+   Application.Calculation = xlCalculationAutomatic
+   If Err.Number = 0 Then
+      MsgBox UBound(fn) & "개 파일의 자료가 추가되었습니다.", _
+               vbInformation, "작업완료"
+  End If
+End Sub

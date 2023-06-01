@@ -1,0 +1,10 @@
+Sub sb작업시트숨기기()
+   Const shNM As String = "@작업시트"
+   
+   Sheets(shNM).Visible = Not Sheets(shNM).Visible
+   If Sheets(shNM).Visible = True Then
+      MsgBox "[" & shNM & "] 시트를 표시했습니다."
+   Else
+      MsgBox "[" & shNM & "] 시트를 숨기기했습니다."
+   End If
+End Sub

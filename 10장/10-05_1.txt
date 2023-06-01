@@ -1,0 +1,12 @@
+Option Explicit
+
+Private Sub cmd시트보호_Click()
+   Select Case cmd시트보호.Caption
+      Case "시트보호"
+         cmd시트보호.Caption = "시트보호 해제"
+         Call sb시트보호
+      Case Else
+         cmd시트보호.Caption = "시트보호"
+         Sheets("Main").Unprotect
+   End Select
+End Sub

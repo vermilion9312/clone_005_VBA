@@ -1,0 +1,52 @@
+Sub sb저장하기(strKey As String)
+   Dim R As Long, C As Long, Cnt As Long
+   Dim rngT As Range
+   
+   '--// 문서번호를 찾아 해당 내용 수정하기
+   If Application.CountIf(Range("tbl견적서발급[문서번호]"), strKey) = 0 Then
+      R = Range("tbl견적서발급[문서번호]").Rows.Count + 1
+   Else
+      R = Application.Match(strKey, Range("tbl견적서발급[문서번호]"), 0)
+   End If
+   
+   Range("tbl견적서발급[문서번호]").Cells(R) = Range("nmD_문서번호")
+   Range("tbl견적서발급[거래처코드]").Cells(R) = Range("nmD_거래처코드")
+   Range("tbl견적서발급[거래처명]").Cells(R) = Range("nmD_거래처명")
+   Range("tbl견적서발급[담당자]").Cells(R) = Range("nmD_담당자")
+   Range("tbl견적서발급[연락처]").Cells(R) = Range("nmD_연락처")
+   Range("tbl견적서발급[EMail]").Cells(R) = Range("nmD_EMail")
+   Range("tbl견적서발급[견적일자]").Cells(R) = Range("nmD_견적일자")
+   Range("tbl견적서발급[납품예정일]").Cells(R) = Range("nmD_납품예정일")
+   Range("tbl견적서발급[납품장소]").Cells(R) = Range("nmD_납품장소")
+   Range("tbl견적서발급[공급가액]").Cells(R) = Range("nmD_공급가액")
+   Range("tbl견적서발급[본사담당자]").Cells(R) = Range("nmD_본사담당자")
+   Range("tbl견적서발급[본사연락처1]").Cells(R) = Range("nmD_본사연락처1")
+   Range("tbl견적서발급[본사연락처2]").Cells(R) = Range("nmD_본사연락처2")
+   Range("tbl견적서발급[본사Email]").Cells(R) = Range("nmD_본사Email")
+   Range("tbl견적서발급[비고]").Cells(R) = Range("nmD_비고")
+   
+   '--// 세부사항 저장
+   With Range("tbl견적서세부").Parent.ListObjects("tbl견적서세부")
+      '--// 기존자료가 있으면 삭제
+      If Application.CountIf(Range("tbl견적서세부[문서번호]"), strKey) > 0 Then
+         C = .ListColumns("문서번호").Index
+         .Range.AutoFilter Field:=C, Criteria1:=strKey
+         .DataBodyRange.SpecialCells(xlCellTypeVisible).EntireRow.Delete
+         .Range.AutoFilter
+      End If
+      
+      R = .Range.Rows.Count
+      Set rngT = Range("nmD_견적세부시작셀")
+      Cnt = 1
+      Do While rngT.Offset(Cnt, -1) <> ""
+         Range("tbl견적서세부[문서번호]").Cells(R) = Range("nmD_문서번호")
+         Range("tbl견적서세부[출력번호]").Cells(R) = Cnt
+         Range("tbl견적서세부[품목코드]").Cells(R) = rngT.Offset(Cnt, -1)
+         Range("tbl견적서세부[수량]").Cells(R) = rngT.Offset(Cnt, 3)
+         Range("tbl견적서세부[비고]").Cells(R) = rngT.Offset(Cnt, 8)
+         R = R + 1: Cnt = Cnt + 1
+      Loop
+   End With
+   
+   MsgBox "저장이 완료되었습니다.", vbInformation, "저장완료"
+End Sub

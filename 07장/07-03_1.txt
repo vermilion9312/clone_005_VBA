@@ -1,0 +1,20 @@
+Function fn반배정(나이 As Integer)
+    Dim Result As String
+    
+    Select Case 나이
+        Case Is >= 60
+            Result = "어르신"
+        Case 16 To 25
+            Result = "청년"
+        Case 6 To 16
+            Result = "아동"
+        Case 1
+            Result = "신생아"
+        Case 2, 3, 4, 5
+            Result = "유아"
+        Case Else
+            Result = "장년"
+    End Select
+    
+    fn반배정 = Result & "반"
+End Function

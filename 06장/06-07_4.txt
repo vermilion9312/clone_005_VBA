@@ -1,0 +1,5 @@
+Range("A1").Value = 1000
+Range("A2").Value = "=A1 + 1000"
+Range("A1:A2").NumberFormat = "\$ #,##0"
+
+MsgBox Range("A2").Value & vbCrLf & Range("A2").Formula & vbCrLf & Range("A2").Text

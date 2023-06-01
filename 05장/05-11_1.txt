@@ -1,0 +1,9 @@
+MsgBox "확인", vbOKOnly + vbInformation
+MsgBox "확인-취소", vbOKCancel + vbCritical
+MsgBox "예-아니오", vbYesNo + vbQuestion
+MsgBox "경고", vbExclamation
+
+MsgBox "확인", 0 + 64
+MsgBox "확인-취소", 1 + 16
+MsgBox "예-아니오", 4 + 32
+MsgBox "경고", 48

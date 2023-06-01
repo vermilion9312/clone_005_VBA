@@ -1,0 +1,7 @@
+Private Sub ScrollBar1_Change()
+   With Sheets("力前格废").Range("A3")
+      Me.txt前格内靛 = .Offset(Me.ScrollBar1, 0)
+      Me.txt前格 = .Offset(Me.ScrollBar1, 1)
+      Me.txt窜啊 = Format(.Offset(Me.ScrollBar1, 2), "\\ #,##0")
+   End With
+End Sub

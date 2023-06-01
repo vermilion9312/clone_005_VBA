@@ -1,0 +1,41 @@
+Sub sbFromAccess()
+   Dim adoConn As New ADODB.Connection
+   Dim adoRs As New ADODB.Recordset
+   Dim connString As String
+   Dim strSQL As String, DBname As String
+   Dim sh As Worksheet
+   Dim R As Long, recCnt As Long
+   
+   Set sh = ThisWorkbook.Sheets("설문자료")
+   DBname = "\강의평가가져오기.accdb"
+   
+ On Error GoTo End_Rtn
+   '--// ACCDB(엑셀 2007 이상 버전)의 DB 연결 문자열을 설정
+   connString = "PROVIDER=Microsoft.ACE.OLEDB.12.0; " & _
+            "DATA SOURCE=" & ThisWorkbook.Path & DBname
+   adoConn.Open connString
+
+   If adoConn.State = adStateOpen Then '--// DB가 연결된 경우만 처리
+      strSQL = "Select * From 설문종합"
+      adoRs.Open strSQL, adoConn, adOpenStatic, adLockOptimistic
+      If Not adoRs.EOF Then
+         recCnt = adoRs.RecordCount
+         R = sh.ListObjects("tbl설문자료").ListRows.Count + 1
+         Range("tbl설문자료").Cells(R, 1).CopyFromRecordset adoRs
+      End If
+      
+      If adoRs.State = adStateOpen Then
+         adoRs.Close: Set adoRs = Nothing
+      End If
+      adoConn.Close '--// DB 연결을 닫기
+   End If
+
+   Set adoConn = Nothing '--// 할당된 연결 객체 변수를 해제
+
+End_Rtn:
+   If Err.Number = 0 Then
+      MsgBox DBname & " 파일에서 " & recCnt & "개의 자료를 가져왔습니다.", vbInformation, "작업완료"
+   Else
+      MsgBox Err.Description, vbCritical, "작업 오류"
+   End If
+End Sub

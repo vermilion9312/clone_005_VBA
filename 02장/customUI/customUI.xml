@@ -1,0 +1,12 @@
+﻿<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+	<ribbon>
+		<tabs>
+			<tab id="customTab" label="길벗추가기능" insertAfterMso="TabView">
+				<group idMso="GroupMacros" />
+				<group id="customGroup" label="그룹별시트분리">
+					<button id="customButton1" label="그룹분리" size="large" onAction="aa" imageMso="ControlsGallery" supertip="선택한 데이터베이스에서 특정열을 기준으로 그룹별 시트 분리 // 길벗출판사" />
+				</group>
+			</tab>
+		</tabs>
+	</ribbon>
+</customUI>

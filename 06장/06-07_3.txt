@@ -1,0 +1,13 @@
+Range("A1").FormulaR1C1 = "도서출판 길벗"
+Range("A2").FormulaR1C1 = "2014-12-24"
+Range("A3").FormulaR1C1 = 10
+Range("A4").FormulaR1C1 = "=A2 + A3"
+Range("A5").FormulaR1C1 = "=R2C1 + R3C1"
+
+Range("C1:C4").FormulaR1C1 = "=R2C1 + 1"
+
+Range("E1").FormulaR1C1 = "=RC[-2] + 1"
+Range("E5").FormulaR1C1 = "=R[-4]C - R[-2]C[-4]"
+
+MsgBox Range("E5").Formula
+MsgBox Range("E5").FormulaR1C1

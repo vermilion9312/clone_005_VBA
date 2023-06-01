@@ -1,0 +1,30 @@
+Sub sb예약명단출력()
+   Dim rngT As Range
+
+   With Me.lst강좌명단
+      Me.txt강좌코드 = .Column(0)
+      Me.txt강좌명 = .Column(2)
+      Me.txt일자 = .Column(1)
+      Me.txt장소 = .Column(3)
+   End With
+
+   Range("nm예약_조건").Cells(2, 1) = Me.txt강좌코드
+   Range("tbl예약현황[#All]").AdvancedFilter Action:=xlFilterCopy, _
+        CriteriaRange:=Range("nm예약_조건"), _
+        CopyToRange:=Range("nm예약_출력"), Unique:=False
+
+   Set rngT = Range("nm예약_출력").CurrentRegion
+   
+   With Me.lst예약명단
+      .ColumnCount = 5
+      .ColumnWidths = "2 cm;1.5 cm;2.5 cm;2 cm;1 cm"
+      .ColumnHeads = True
+      .MultiSelect = fmMultiSelectExtended
+      If rngT.Rows.Count = 1 Then
+         .RowSource = ""
+      Else
+         .RowSource = rngT.Offset(1, 0).Resize(rngT.Rows.Count - 1).Address(External:=True)
+      End If
+      If .ListCount > 0 Then .ListIndex = .ListCount - 1
+   End With
+End Sub

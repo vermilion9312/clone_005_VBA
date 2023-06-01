@@ -1,0 +1,7 @@
+MsgBox ThisWorkbook.Path
+
+ActiveWorkbook.SaveAs Filename:=ThisWorkbook.Path & "\SaveAsTest.xlsm", FileFormat:=xlOpenXMLWorkbookMacroEnabled
+
+ActiveWorkbook.Save
+         
+ActiveWorkbook.SaveAs Filename:=ThisWorkbook.Path & "\SaveAsTest.xls", FileFormat:=xlExcel8

@@ -1,0 +1,5 @@
+? Range("A1:C5").Resize(3, 2).Address
+Range("A1:C5").Select
+Selection.Borders.Weight = xlThin
+Selection.Rows(1).Interior.Color = vbYellow
+Selection.Offset(1, 0).Resize(Selection.Rows.Count - 1, Selection.Columns.Count - 1).Interior.Color = vbGreen

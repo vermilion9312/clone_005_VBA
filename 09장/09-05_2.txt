@@ -1,0 +1,12 @@
+Sub sb컨트롤잠금(bLock As Boolean)
+   Dim ctrNM
+   Dim i As Integer
+   ctrNM = Array("txt성명", "txt소속", "txt연락처", "txt주소")
+   
+   For i = LBound(ctrNM) To UBound(ctrNM)
+      Me.Controls(ctrNM(i)).Locked = bLock
+      Me.Controls(ctrNM(i)).SpecialEffect = IIf(bLock, 3, 2)
+   Next
+   
+   Call sb버튼표시(bLock)
+End Sub

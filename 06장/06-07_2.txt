@@ -1,0 +1,11 @@
+Range("A1").Formula = "도서출판 길벗"
+Range("A2").Formula = "2014-12-24"
+Range("A3").Formula = 10
+Range("A4").Formula = "=A2 + A3"
+Range("C1:C4").Formula = "=A2 + 1"
+
+Range("D1:D5").Formula = 1000
+Range("D6").Formula = "=sum(D1:D5)"
+
+MsgBox Range("A4").Value
+MsgBox Range("A4").Formula

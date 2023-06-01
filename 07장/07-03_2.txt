@@ -1,0 +1,19 @@
+Function fn반배정2(나이 As Integer)
+   Dim Result As String
+    
+   If 나이 >= 60 Then
+      Result = "어르신"
+   ElseIf 나이 >= 16 And 나이 <= 25 Then
+      Result = "청년"
+   ElseIf 나이 >= 6 And 나이 <= 16 Then
+      Result = "아동"
+   ElseIf 나이 = 1 Then
+      Result = "신생아"
+   ElseIf 나이 = 2 Or 나이 = 3 Or 나이 = 4 Or 나이 = 5 Then
+      Result = "유아"
+   Else
+      Result = "장년"
+   End If
+    
+   fn반배정2 = Result & "반"
+End Function

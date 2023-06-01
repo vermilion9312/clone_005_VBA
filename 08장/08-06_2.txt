@@ -1,0 +1,14 @@
+Private Sub cmdOk_Click()
+   Dim i As Long, k As Long
+   k = Sheets("주문등록").Range("B3").CurrentRegion.Rows.Count
+   With Me.lst상품
+   For i = 0 To .ListCount - 1
+      If .Selected(i) Then
+         Sheets("주문등록").Range("B3").Offset(k, 0) = .List(i)
+         Sheets("주문등록").Range("B3").Offset(k, 1) = .List(i, 1)
+         Sheets("주문등록").Range("B3").Offset(k, 2) = .List(i, 2)
+         k = k + 1
+      End If
+   Next
+   End With
+End Sub

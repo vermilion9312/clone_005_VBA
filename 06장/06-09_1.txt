@@ -1,0 +1,10 @@
+Sheets("Sheet1").Cells.Clear    '--//시트 전체 지우기
+Range("A1:E2").Value = 10000
+Range("A1:E2").NumberFormat = "\\ #,##0"
+Range("A1:E2").Interior.Color = vbYellow
+Range("A1:E2").Borders.Weight = xlThin
+Range("A1").ClearContents
+Range("A2").ClearFormats
+
+Range("A1:E2").Columns.Group
+Range("A1:E2").ClearOutline  

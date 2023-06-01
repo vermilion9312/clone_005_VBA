@@ -1,0 +1,14 @@
+Sub MsgBox_Return()
+    Dim 반환값 As Integer
+
+    반환값 = MsgBox("작업을 계속 진행할까요?", _
+              vbYesNoCancel + vbQuestion + vbDefaultButton2, "작업확인")
+    Select Case 반환값
+        Case Is = vbYes
+            MsgBox "[예] 단추를 눌렀습니다."
+        Case Is = vbNo
+            MsgBox "[아니오] 단추를 눌렀습니다."
+        Case Is = vbCancel
+            MsgBox "[취소] 단추를 눌렀습니다."
+    End Select
+End Sub

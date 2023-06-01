@@ -1,0 +1,10 @@
+Sheets("Sheet1").Cells.Clear
+
+Sheets("기초자료").Range("A1:B6").Copy
+Sheets("Sheet1").Range("A1").PasteSpecial
+Sheets("Sheet1").Range("D1").PasteSpecial Paste:=xlPasteFormats
+
+Sheets("Sheet1").Range("C1") = 10
+Sheets("Sheet1").Range("C1").Copy
+Sheets("Sheet1").Range("D1").PasteSpecial xlPasteValues, Operation:=xlPasteSpecialOperationAdd
+Sheets("Sheet1").Range("D1").PasteSpecial xlPasteValues, Operation:=xlPasteSpecialOperationAdd

@@ -1,0 +1,17 @@
+Function fn비고병합표시(강사 As String)
+   Application.Volatile
+   Dim strResult As String, strC As String
+   Dim sh As Worksheet
+   Dim R As Long
+   
+   Set sh = Range("tbl설문자료").Parent
+   For R = 1 To sh.ListObjects("tbl설문자료").ListRows.Count
+      strC = sh.Range("tbl설문자료[기타]").Cells(R, 1).Value
+      If sh.Range("tbl설문자료[강사]").Cells(R, 1).Value = 강사 _
+         And strC <> "" Then
+         strResult = strResult & IIf(strResult = "", "", Chr(10)) & strC
+      End If
+   Next
+ 
+   fn비고병합표시 = Trim(strResult)
+End Function

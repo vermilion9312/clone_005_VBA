@@ -1,0 +1,14 @@
+Range("A1").Value = "µµ¼­ÃâÆÇ ±æ¹þ"
+Range("A2") = "¿¢¼¿ ¸ÅÅ©·Î¿Í VBA"
+Range("A3").Value = "2014-12-24"
+Range("A4").Value = 1000
+Range("A5").Value = 3 - 1
+Range("A6").Value = "=3-1"
+Range("A7").Value = "=A1 & A2"
+Range("A8").Value = Range("A1") & Range("A2")
+
+Range("D1:D5").Value = 1000
+Range("D6").Value = "=sum(D1:D5)"
+
+MsgBox Range("D6").Value
+MsgBox Range("D6").Formula

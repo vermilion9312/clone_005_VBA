@@ -1,0 +1,5 @@
+Range("B3").Offset(1, 1).Select
+Range("B3").Offset(-1, 1).Select
+Range("B3").Offset(2).Select
+Range("B3").Offset(, 2).Select
+Range("B3:D4").Offset(1, 1).Select

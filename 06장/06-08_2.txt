@@ -1,0 +1,3 @@
+? Range("A2").Address
+? Range("A2").Address(False)
+? Range("A2").Address(, False, External:=True)

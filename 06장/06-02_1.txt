@@ -1,0 +1,15 @@
+ActiveSheet.Range("C5").Select
+Range("B2").Select
+Range("B2:C3").Select
+Range("B2,C3").Select
+Range("B2", "C3").Select
+Range("B2:C3, E3:F4").Select
+Range("1:1").Select
+Range("B:B").Select
+Range("B2:D10").Range("A1").Select
+
+Sheets(2).Range("B2") = "엑셀"
+Range("B4:D6").Value = "VBA"
+
+MsgBox Application.CountA(Range("거래처명"))
+MsgBox Application.CountA(Range("주문현황표[거래처명]"))

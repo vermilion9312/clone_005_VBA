@@ -1,0 +1,33 @@
+Private Sub cmd저장_Click()
+   Dim R As Long
+   
+   If Me.txt고객코드 = "" Or Me.txt성명 = "" Then
+      MsgBox "고객코드와 성명을 입력하세요.", vbCritical
+      Exit Sub
+   End If
+ 
+   If Application.CountIf(Range("tbl고객정보[고객코드]"), Me.txt고객코드) = 0 Then
+      Select Case Application.CountA(Range("tbl고객정보[고객코드]"))
+        Case 0:     R = Range("tbl고객정보[고객코드]").Row
+        Case 1:     R = Range("tbl고객정보[고객코드]").Row + 1
+        Case Else:   R = Range("tbl고객정보[고객코드]").End(xlDown).Row + 1
+      End Select
+   Else
+      R = Application.Match(Me.txt고객코드, Range("tbl고객정보[고객코드]"), 0)
+      R = R + Range("tbl고객정보[[#Headers],[고객코드]]").Row
+   End If
+   
+   With Sheets("고객목록")
+      .Cells(R, 1) = Me.txt고객코드
+      .Cells(R, 2) = Me.txt성명
+      .Cells(R, 3) = Me.txt소속
+      .Cells(R, 4) = Me.txt연락처
+      .Cells(R, 5) = Me.txt주소
+   
+      MsgBox "저장되었습니다.", vbInformation
+  
+       Call cmd검색_Click
+  
+      If (.Cells(R, 1) Like "*" & Me.txt검색이름 & "*") Then Me.lst고객명단.Text = .Cells(R, 1)
+   End With
+End Sub

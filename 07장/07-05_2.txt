@@ -1,0 +1,17 @@
+Sub DoWhile_Ex3()
+   Dim R As Long, iOk As Integer
+   
+   iOk = MsgBox("현재 셀 [" & ActiveCell.Address & _
+            "] 의 수식과 서식기호를 오른쪽 셀에 표시합니다." & _
+            vbCrLf & "작업을 계속할까요?", vbQuestion + vbYesNo)
+   If iOk <> vbYes Then Exit Sub
+   
+   R = 0
+   Do While ActiveCell.Offset(R, 0) <> ""
+      ActiveCell.Offset(R, 1) = "'" & ActiveCell.Offset(R, 0).Formula
+      ActiveCell.Offset(R, 2) = "'" & ActiveCell.Offset(R, 0).NumberFormatLocal
+      R = R + 1
+   Loop
+   
+   MsgBox "작업을 완료했습니다."
+End Sub

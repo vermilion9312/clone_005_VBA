@@ -1,0 +1,17 @@
+Option Base 1
+
+Sub Array_Ex2()
+   Dim sName(10) As String
+   Dim DoW, DoW2
+   
+   DoW = Array("월", "화", "수", "목", "금", "토", "일")
+   DoW2 = Split("월,화,수,목,금,토,일", ",")
+   
+   MsgBox "sName index: " & LBound(sName) & "~" & UBound(sName) & _
+      vbCrLf & "DoW index: " & LBound(DoW) & "~" & UBound(DoW) & _
+      vbCrLf & "DoW2 index: " & LBound(DoW2) & "~" & UBound(DoW)
+   
+   For i = LBound(DoW) To UBound(DoW)
+      MsgBox i & "번째 값은 " & DoW(i)
+   Next
+End Sub

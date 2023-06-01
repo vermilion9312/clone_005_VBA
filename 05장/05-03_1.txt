@@ -1,0 +1,12 @@
+option wxplicit
+
+sub sb사용자기록()
+   dim i
+   with sheets("사용기록").range("A3")
+      i = .currentregion.rows.count
+      .offset(i, 0) = application.username
+      .offset(i, 1) = now()
+   end with
+   sheets("사용기록").visible = false
+end sub
+

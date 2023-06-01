@@ -1,0 +1,2 @@
+MsgBox Union(Range("A1:C4"), Range("B2:F10")).Address
+MsgBox Intersect(Range("A1:C4"), Range("B2:F10")).Address

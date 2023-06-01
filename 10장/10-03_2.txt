@@ -1,0 +1,11 @@
+Private Sub txtFind_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+   If KeyCode = 13 Then
+      Call sb거래처목록내용만들기
+      With Me.txtFind
+        .SetFocus
+        .SelStart = 0
+        .SelLength = Len(.Text)
+      End With
+      KeyCode = 0 
+   End If
+End Sub

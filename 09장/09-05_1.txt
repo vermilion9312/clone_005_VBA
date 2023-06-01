@@ -1,0 +1,15 @@
+Private Sub lst고객명단_Click()
+   With Me.lst고객명단
+      If .ListIndex >= 0 Then
+         Me.txt고객코드 = .Column(0)
+         Me.txt성명 = .Column(1)
+         Me.txt소속 = .Column(2)
+         Me.txt연락처 = .Column(3)
+         Me.txt주소 = .Column(4)
+      Else
+         Call sb컨트롤내용비우기
+      End If
+   End With
+   
+   Call sb컨트롤잠금(True)
+End Sub

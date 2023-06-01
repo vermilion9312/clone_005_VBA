@@ -1,0 +1,7 @@
+Sub InputBox메서드_1()
+    Dim 반환셀 As Range
+
+    Set 반환셀 = Application.InputBox("선택하실 범위를 지정하세요", "범위선택", Type:=8)
+    반환셀.Select
+    Selection.Value = "와우!!"
+End Sub

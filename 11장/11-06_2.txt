@@ -1,0 +1,9 @@
+Sub sb차트및컨트롤표시(sh As Worksheet, 표시 As Boolean)
+   Dim i As Long
+   For i = 1 To sh.Shapes.Count
+      Select Case sh.Shapes(i).Name
+         Case "분석차트", "cbo강사"
+            sh.Shapes(i).Visible = 표시
+      End Select
+   Next
+End Sub

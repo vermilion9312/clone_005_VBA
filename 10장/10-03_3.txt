@@ -1,0 +1,18 @@
+Private Sub lst거래처_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+   Dim bLock As Boolean
+
+   If Sheets("Main").ProtectContents = True Then
+      bLock = True
+      Sheets("Main").Unprotect
+   End If
+   
+   Range("nmD_거래처코드") = Me.lst거래처.Column(0)
+   Range("nmD_거래처명") = Me.lst거래처.Column(1)
+
+   Range("nmD_담당자") = Me.lst거래처.Column(5)
+   Range("nmD_연락처") = Me.lst거래처.Column(6)
+   Range("nmD_Email") = Me.lst거래처.Column(7)
+   
+   If bLock Then Call sb시트보호
+   Unload Me
+End Sub

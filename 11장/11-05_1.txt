@@ -1,0 +1,67 @@
+Option Explicit
+
+Dim wdApp As Object
+
+Sub sbMSWord문서작성()
+   Dim wdDOC As Object
+   Dim i As Integer
+   Dim sh As Worksheet
+   
+On Error Resume Next
+   Set wdApp = GetObject(, "Word.Application")
+   If Err.Number <> 0 Then Set wdApp = CreateObject("Word.Application")
+On Error GoTo 0
+
+   wdApp.Visible = False
+   Set wdDOC = wdApp.Documents.Add
+   wdDOC.Activate
+   With wdApp.Selection
+      .ParagraphFormat.Alignment = 1      '--//  wdAlignParagraphCenter
+      Call sb단락서식("굴림", 20, True, 120)
+      .TypeText Text:="강의 평가 분석 - " & Range("nm강사").Value
+      Call sb줄변경(3)
+      
+      Call sb단락서식("굴림", 11, False, 100)
+      
+      Set sh = Sheets("평가분석")
+      With .ParagraphFormat
+         .Alignment = 0
+         .FirstLineIndent = wdApp.CentimetersToPoints(-1)
+         .LineSpacingRule = 1
+         .TabStops.ClearAll
+         .TabStops.Add Position:=wdApp.CentimetersToPoints(0), Alignment:=0, Leader:=0
+         .TabStops.Add Position:=wdApp.CentimetersToPoints(16), Alignment:=2, Leader:=1
+      End With
+      
+      For i = 6 To 16
+         If sh.Range("B" & i) <> "" Then
+            .TypeText Text:=sh.Range("A" & i) & ". "
+            .TypeText Text:=vbTab
+            .TypeText Text:=sh.Range("B" & i).Value
+            .TypeText Text:=vbTab
+            .TypeText Text:=CStr(sh.Range("I" & i)) & "(" & CStr(sh.Range("H" & i)) & ")"
+         End If
+         Call sb줄변경(1)
+      Next
+      '--// 비고 내용 출력
+      .TypeText Text:="▣ 비고:"
+      Call sb줄변경(1)
+      .TypeText Text:=CStr(sh.Range("B19"))
+   End With
+   
+   wdDOC.SaveAs ThisWorkbook.Path & "\" & Format(Now, "yymmdd_hhmmss") & ".docx"
+   
+   i = MsgBox("작성된 워드파일(" & wdDOC.Name & ")이 저장되었습니다." & _
+         "MS-Word를 종료할까요?" & vbCr & _
+         "미리 보기하시려면 [아니오]를 누르세요", vbInformation + vbYesNo, "인쇄")
+   If i = vbYes Then
+      wdDOC.Close
+      wdApp.Quit
+      Set wdDOC = Nothing: Set wdApp = Nothing
+   Else
+      wdApp.ActiveDocument.PrintPreview
+      wdApp.Visible = True
+      wdApp.Activate
+   End If
+   
+End Sub

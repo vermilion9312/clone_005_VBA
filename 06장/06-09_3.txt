@@ -1,0 +1,8 @@
+Sheets("Sheet1").Select
+Sheets.Add
+ActiveSheet.Name = "추가시트"
+Sheets.Add Before:=Sheets("기초자료")
+Sheets.Add After:=Sheets(Sheets.Count), Count:=2
+
+Workbooks.Add
+ActiveWorkbook.Save

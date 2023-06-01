@@ -1,0 +1,4 @@
+? ActiveWorkbook.Sheets.Count
+? ActiveWorkbook.Worksheets.Count
+? Sheets("ÇÇ¹þºÐ¼®").PivotTables.Count
+? Range("A1:B5").Cells.Count

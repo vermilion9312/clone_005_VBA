@@ -1,0 +1,12 @@
+Sub sb전체시트지우기()
+   Dim iOk As Integer
+   
+   If Sheets("설문자료").ListObjects("tbl설문자료").ListRows.Count > 0 Then
+      iOk = MsgBox("[설문자료] 시트의 내용을 모두 삭제합니다." & _
+               vbCrLf & "삭제할까요?", vbQuestion + vbYesNo, "삭제확인")
+      If iOk <> vbYes Then Exit Sub
+      
+      Range("tbl설문자료").Delete
+      MsgBox "설문자료를 모두 지웠습니다.", vbInformation
+   End If
+End Sub

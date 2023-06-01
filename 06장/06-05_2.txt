@@ -1,0 +1,4 @@
+Range("B2:E5").EntireColumn.Select
+Range("B2:E5").EntireRow.Select
+Range("B2:E5").EntireRow.Hidden = True
+Range("B2:E5").EntireRow.Hidden = False

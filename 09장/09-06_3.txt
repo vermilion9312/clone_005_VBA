@@ -1,0 +1,15 @@
+Private Sub cmd삭제_Click()
+   Dim iOK As Integer, R As Long
+   
+   iOK = MsgBox("현재 조회 중인 자료를 삭제하시겠습니까?", vbYesNo + vbQuestion, "삭제확인")
+   If iOK = vbYes Then
+      R = Application.Match(Me.txt고객코드, Range("tbl고객정보[고객코드]"), 0)
+      If R > 0 Then
+         R = R + Range("tbl고객정보[[#Headers],[고객코드]]").Row
+         Sheets("고객목록").Rows(R).Delete Shift:=xlUp
+         MsgBox "삭제가 완료되었습니다.", vbInformation
+      End If
+
+      Call cmd검색_Click
+   End If
+End Sub

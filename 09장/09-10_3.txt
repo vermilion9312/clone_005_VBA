@@ -1,0 +1,30 @@
+Private Sub cmd신규_Click()
+   Dim i As Long, R As Long
+   Dim strKey
+   Application.DisplayAlerts = False
+   
+   With Me.lst고객명단
+      For i = 0 To .ListCount - 1
+         If .Selected(i) Then
+            strKey = Me.txt강좌코드 & .List(i, 0)
+            If Application.CountIf(Range("tbl예약현황[Key]"), strKey) = 0 Then
+               If Range("tbl예약현황[Key]").Rows.Count = 1 Then
+                  R = Range("tbl예약현황[Key]").Row + 1
+               Else
+                  R = Range("tbl예약현황[Key]").End(xlDown).Row + 1
+               End If
+               
+               With Sheets("예약현황")
+                  .Cells(R, 2) = Me.txt강좌코드
+                  .Cells(R, 3) = Me.lst고객명단.List(i, 0)
+                  .Cells(R, 5) = Date
+               End With
+            End If
+         End If
+      Next
+   End With
+   
+   Call sb예약명단출력
+   Application.DisplayAlerts = True
+
+End Sub

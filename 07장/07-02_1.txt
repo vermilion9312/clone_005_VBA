@@ -1,0 +1,12 @@
+Function fn합격확인(중간평가, 기말평가)
+   Dim Avg As Single, Result As String
+   
+   Avg = (중간평가 + 기말평가) / 2
+   If Avg >= 60 And 중간평가 >= 40 And 기말평가 >= 40 Then
+      Result = "합격"
+   Else
+      Result = "불합격"
+   End If
+      
+   fn합격확인 = Result
+End Function

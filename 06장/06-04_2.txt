@@ -1,0 +1,4 @@
+Range("B2").End(xlDown).Select
+ActiveCell.End(xlToRight).Select
+Range("E2").End(xlToLeft).Select
+Range("B100").End(xlUp).Select

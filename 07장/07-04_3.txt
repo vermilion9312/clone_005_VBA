@@ -1,0 +1,29 @@
+Option Compare Text
+
+'--// ForEach 문을 이용한 시트 숨기기
+Sub ForEach_Ex1()
+   Dim sh As Worksheet
+   Dim iOk As Integer, bValue As Boolean
+   
+   iOk = MsgBox("시트를 모두 숨길까요?", vbYesNo)
+   bValue = IIf(iOk = vbYes, False, True)
+   For Each sh In Worksheets
+      If sh.Index <> 1 Then
+         sh.Visible = bValue
+      End If
+   Next sh
+End Sub
+
+'--// For 문을 이용한 시트 숨기기
+Sub For_SheetHidden()
+   Dim i As Long
+   Dim iOk As Integer, bValue As Boolean
+   
+   iOk = MsgBox("시트를 모두 숨길까요?", vbYesNo)
+   bValue = IIf(iOk = vbYes, False, True)
+   For i = 1 To Worksheets.Count
+      If Worksheets(i).Name <> "Sheet1" Then
+         Worksheets(i).Visible = bValue
+      End If
+   Next i
+End Sub

@@ -1,0 +1,10 @@
+Sub sb단락서식(폰트 As String, 크기 As Byte, 굵게 As Boolean, 장평 As Byte)
+   With wdApp.Selection
+      With .Font
+         .Name = 폰트
+         .Size = 크기
+         .Bold = 굵게
+         .Scaling = 장평
+      End With
+   End With
+End Sub

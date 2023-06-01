@@ -1,0 +1,18 @@
+﻿<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+<ribbon>
+<tabs>
+<tab id="customTab" label="길벗매크로" insertAfterMso="TabView">
+<!-- group idMso="GroupMacros" / -->
+<group id="customGroup" label="사용자 정의 매크로">
+<button idMso="PlayMacro" size="large"/>
+<button idMso="VisualBasic" size="large"/>
+<!-- 구분선 삽입 -->
+<separator id="customLine1" />
+<button id="customButton1" label="그룹분리" size="large" onAction="sbChooseMacro" imageMso="ProjectWorkspace" supertip="대화상자를 이용하여 그룹 분류 // 길벗출판사" />
+<button id="customButton2" label="배송업체별 그룹분리" size="normal" onAction="sbChooseMacro" imageMso="OmsMaximumMessages" supertip="F열의 배송 업체를 기준으로 자동 분류 // 길벗출판사" />
+<button id="customButton3" label="열제목지정 그룹분리" size="normal" onAction="sbChooseMacro" imageMso="PrintTitles" supertip="분류기준열 제목을 지정하여 그룹 분류 // 길벗출판사" />
+</group>
+</tab>
+</tabs>
+</ribbon>
+</customUI>

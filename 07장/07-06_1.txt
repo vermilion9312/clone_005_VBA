@@ -1,0 +1,25 @@
+'--// Do Until 문을 이용한 예
+Sub DoUntil_Ex1()
+   Dim Sum As Long, Cnt As Long, Target As Long
+   
+   Target = InputBox("몇번까지의 합계를 구할까요?")
+   Cnt = 1
+   Do Until Cnt > Target
+      Sum = Sum + Cnt
+      Cnt = Cnt + 1
+   Loop
+   MsgBox "1~" & Target & "까지의 합 =" & Sum
+End Sub
+
+'--// Do ~ Until 문을 예
+Sub DoUntil_Ex2()
+   Dim Sum As Long, Cnt As Long, Target As Long
+   
+   Target = InputBox("몇번까지의 합계를 구할까요?")
+   Cnt = 1
+   Do
+      Sum = Sum + Cnt
+      Cnt = Cnt + 1
+   Loop Until Cnt > Target
+   MsgBox "1~" & Target & "까지의 합 =" & Sum
+End Sub

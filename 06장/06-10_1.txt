@@ -1,0 +1,12 @@
+MsgBox Application.CutCopyMode
+
+Sheets("기초자료").Range("A1:B6").Copy
+MsgBox Application.CutCopyMode
+
+Sheets("Sheet1").Paste Destination:=Range("A2")
+
+Sheets("Sheet1").Select
+Range("D2").Select
+ActiveSheet.Paste Link:=True
+
+Application.CutCopyMode = False

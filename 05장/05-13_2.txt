@@ -1,0 +1,5 @@
+Sub InputBox메서드_2()
+   Dim myCell As Range
+   Set myCell = Application.InputBox(prompt:="계산에 사용할 셀블록을 지정하세요", Type:=8)
+   MsgBox Application.WorksheetFunction.Sum(myCell)
+End Sub

@@ -1,0 +1,27 @@
+Private Sub cmd°Ë»ö_Click()
+   Dim rngT As Range
+   
+   With Range("nm°­ÁÂ_Á¶°Ç")
+      .Cells(2, 1) = "*" & Me.txt°Ë»öÀÌ¸§ & "*"
+      .Cells(2, 2) = IIf(Me.txtFrom = "", "", ">=") & Me.txtFrom
+      .Cells(2, 3) = IIf(Me.txtTo = "", "", "<=") & Me.txtTo
+   End With
+   
+   Range("tbl°³¼³°­ÁÂ[#All]").AdvancedFilter Action:=xlFilterCopy, _
+        CriteriaRange:=Range("nm°­ÁÂ_Á¶°Ç"), _
+        CopyToRange:=Range("nm°­ÁÂ_Ãâ·Â"), Unique:=False
+        
+   Set rngT = Range("nm°­ÁÂ_Ãâ·Â").CurrentRegion
+   
+   With Me.lst°­ÁÂ¸í´Ü
+      .ColumnCount = 8
+      .ColumnWidths = "1.5 cm;2.5 cm;4 cm;3 cm;2.5 cm;2.5 cm;1 cm;1 cm"
+      .ColumnHeads = True
+      If rngT.Rows.Count = 1 Then
+         .RowSource = rngT.Offset(1, 0).Address(External:=True)
+      Else
+         .RowSource = rngT.Offset(1, 0).Resize(rngT.Rows.Count - 1).Address(External:=True)
+      End If
+      If .ListCount > 0 Then .ListIndex = .ListCount - 1
+   End With
+End Sub

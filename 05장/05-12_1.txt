@@ -1,0 +1,10 @@
+Sub InputBox_1()
+    Dim 반환값 As String
+
+    반환값 = InputBox("당신의 이름은?", "이름입력")
+    If 반환값 <> "" Then
+        MsgBox "당신의 이름은 " & 반환값 & "입니다."
+    Else
+        MsgBox "입력한 내용이 없거나, [취소]를 선택하셨습니다."
+    End If
+End Sub

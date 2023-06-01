@@ -1,0 +1,19 @@
+Sub ErrObject_Ex2()
+   Dim Sum As Integer, vA As Integer
+   
+ On Error Resume Next
+   vA = InputBox("2의 몇 승값을 구할까요?")
+   If vA = 0 Then
+      MsgBox "값이 입력되지 않았습니다."
+      Exit Sub
+   End If
+ On Error GoTo End_Rtn
+   Sum = 2 ^ vA
+   MsgBox "2의 " & vA & "승 값은 " & Sum
+
+End_Rtn:
+   If Err.Number <> 0 Then
+      MsgBox "다음과 같은 오류가 발생했습니다." & _
+            vbCrLf & Err.Description, vbCritical
+   End If
+End Sub

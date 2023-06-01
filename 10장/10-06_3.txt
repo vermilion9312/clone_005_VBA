@@ -1,0 +1,42 @@
+Sub sb초기화(Optional bValue As Boolean = True)
+   Dim rngT As Range
+   Dim i As Long, RowCnt As Long, Cnt As Long
+   Dim strNM
+   strNM = Split("거래처명,담당자,연락처,Email,견적일자,납품예정일,납품장소,비고", ",")
+   
+   Dim bLock As Boolean
+   
+   '--// 시트 보호 상태인지 확인후 해제
+   If Sheets("Main").ProtectContents = True Then
+      bLock = True
+      Sheets("Main").Unprotect
+   End If
+   
+   Range("nmD_문서번호") = Range("nmMax코드").Value
+   Range("nmD_거래처코드") = ""
+      
+   '--// 세부내역  지우기
+   For i = LBound(strNM) To UBound(strNM)
+      Range("nmD_" & strNM(i)) = ""
+   Next
+   
+   Set rngT = Range("nmD_견적세부시작셀")
+   '--// 내용 지우기
+   On Error Resume Next
+      Range(rngT.Offset(1, 0), Range("nmD_비고").Offset(-2, 0)).EntireRow.SpecialCells(xlCellTypeConstants).ClearContents
+   On Error GoTo 0
+   
+   RowCnt = Range("nmD_비고").Offset(-3, 0).Row - rngT.Row
+   Cnt = RowCnt - 15
+   '--// 행 추가/삭제
+   Select Case Cnt
+      Case Is > 0 '--// 15 행 초과
+         rngT.Offset(15, 0).Resize(Cnt).EntireRow.Delete Shift:=xlUp
+      Case Is < 0
+         rngT.Offset(1, 0).EntireRow.Copy
+         rngT.Offset(2, 0).Resize(Cnt * -1).EntireRow.Insert
+         Application.CutCopyMode = False
+   End Select
+
+   If bLock Then Call sb시트보호
+End Sub

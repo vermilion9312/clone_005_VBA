@@ -1,0 +1,69 @@
+Private Sub lst견적_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+   Dim rngT As Range
+   Dim C As Long, R As Long, RowCnt As Long, DataCnt As Long, Cnt As Long
+   Dim bLock As Boolean
+   
+   If Sheets("Main").ProtectContents = True Then
+      bLock = True
+      Sheets("Main").Unprotect
+   End If
+   
+   Range("nmD_문서번호") = Me.lst견적.Column(0)
+   Range("nmD_거래처코드") = Me.lst견적.Column(1)
+      
+   '--// 세부내역 출력
+   Range("nm견적세부_조건").Cells(2, 1) = Me.lst견적.Column(0)
+   Range("tbl견적서세부[#All]").AdvancedFilter Action:=xlFilterCopy, _
+        CriteriaRange:=Range("nm견적세부_조건"), _
+        CopyToRange:=Range("nm견적세부_출력"), Unique:=False
+        
+   R = Application.Match(Me.lst견적.Column(0), Range("tbl견적서발급[문서번호]"), 0)
+   
+   Range("nmD_거래처명") = Range("tbl견적서발급[거래처명]").Cells(R)
+   Range("nmD_담당자") = Range("tbl견적서발급[담당자]").Cells(R)
+   Range("nmD_연락처") = Range("tbl견적서발급[연락처]").Cells(R)
+   Range("nmD_Email") = Range("tbl견적서발급[EMail]").Cells(R)
+   
+   Range("nmD_견적일자") = Range("tbl견적서발급[견적일자]").Cells(R)
+   Range("nmD_납품예정일") = Range("tbl견적서발급[납품예정일]").Cells(R)
+   Range("nmD_납품장소") = Range("tbl견적서발급[납품장소]").Cells(R)
+
+   Range("nmD_비고") = Range("tbl견적서발급[비고]").Cells(R)
+   
+   Range("nmD_본사담당자") = Range("tbl견적서발급[본사담당자]").Cells(R)
+   Range("nmD_본사연락처1") = Range("tbl견적서발급[본사연락처1]").Cells(R)
+   Range("nmD_본사연락처2") = Range("tbl견적서발급[본사연락처2]").Cells(R)
+   Range("nmD_본사Email") = Range("tbl견적서발급[본사EMail]").Cells(R)
+   
+   Set rngT = Range("nmD_견적세부시작셀")
+   '--// 내용 지우기
+On Error Resume Next
+   Range(rngT.Offset(1, 0), Range("nmD_비고").Offset(-2, 0)).EntireRow.SpecialCells(xlCellTypeConstants).ClearContents
+On Error GoTo 0
+
+   RowCnt = Range("nmD_비고").Offset(-3, 0).Row - rngT.Row
+   DataCnt = Range("nm견적세부_출력").CurrentRegion.Row - 1
+   If DataCnt < 15 Then DataCnt = 15
+   
+   Cnt = RowCnt - DataCnt
+   Select Case Cnt
+      Case Is > 0 '--// 15 행 초과
+         rngT.Offset(15, 0).Resize(Cnt).EntireRow.Delete Shift:=xlUp
+      Case Is < 0
+         rngT.Offset(1, 0).EntireRow.Copy
+         rngT.Offset(2, 0).Resize(Cnt * -1).EntireRow.Insert
+         Application.CutCopyMode = False
+   End Select
+   
+   With Range("nm견적세부_출력").Cells(1)
+      R = 1
+      Do While .Offset(R, 1) <> ""
+         rngT.Offset(R, -1) = .Offset(R, 1)
+         rngT.Offset(R, 3) = .Offset(R, 3)
+         rngT.Offset(R, 8) = .Offset(R, 5)
+         R = R + 1
+      Loop
+   End With
+
+   If bLock Then Call sb시트보호
+End Sub

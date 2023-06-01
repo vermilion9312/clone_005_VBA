@@ -1,0 +1,14 @@
+ActiveSheet.Columns.Select
+Rows(2).Select
+Columns("B:D").Select
+Range("B2:E4").Rows("1:2").Select
+
+Range("B2:E4").Rows(1).Style = "°­Á¶»ö1"
+Range("B2:E4").Rows(1).Style = "Normal"
+
+Range("B2:E4").Select
+MsgBox Selection.Rows.Count
+MsgBox Range("B2:C4, E2:F4").Columns.Count
+
+Sheets(2).Columns(1).ColumnWidth = 1
+Sheets(2).Columns("A:C").ColumnWidth = 2

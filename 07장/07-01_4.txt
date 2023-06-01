@@ -1,0 +1,18 @@
+Sub IF_Ex4()
+   Dim Score As Long, Result As String
+   
+   Score = InputBox("점수를 입력하세요.", "입력")
+   If Score > 100 Then
+      Result = "점수 오류!"
+   ElseIf Score >= 90 Then
+      Result = "A"
+   ElseIf Score >= 80 Then
+      Result = "B"
+   ElseIf Score >= 70 Then
+      Result = "C"
+   Else
+      Result = "D"
+   End If
+   
+   MsgBox "입력 점수: " & Score & vbCrLf & "결과 :" & Result
+End Sub

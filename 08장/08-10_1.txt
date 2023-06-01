@@ -1,0 +1,12 @@
+Private Sub cmd그림선택_Click()
+  Dim fn As Variant
+
+   fn = Application.GetOpenFilename( _
+         FileFilter:="그림파일,*.gif;*.jpg;*.bmp,전체파일,*.*", _
+         Title:="현재 셀에 삽입할 그림 선택")
+On Error Resume Next
+  If fn = False Then Exit Sub
+On Error GoTo 0
+   Me.Image1.Picture = LoadPicture(fn)
+   Me.txt그림경로 = fn
+End Sub

@@ -1,0 +1,11 @@
+Private Sub txt검색이름_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+   If KeyCode = 13 Then
+      Call cmd검색_Click
+      With Me.txt검색이름
+        .SetFocus
+        .SelStart = 0
+        .SelLength = Len(.Text)
+      End With
+      KeyCode = 0       
+   End If
+End Sub

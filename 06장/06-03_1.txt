@@ -1,0 +1,10 @@
+ActiveSheet.Cells.Select
+Cells(1, 2).Select
+Cells(1).Select
+Cells(, 2).Select
+
+Sheets(2).Cells(3, 1).Value = Now()
+Range("B2:D10").Cells(1, 2).Select
+
+Range("B2:D10").Select
+Selection.Cells(2, 1) = "¹øÈ£"

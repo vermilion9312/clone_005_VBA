@@ -1,0 +1,24 @@
+Private Sub cmd실행_Click()
+   Dim rng작업 As Range, rng출력 As Range
+   Dim Cnt As Long
+   
+   If Me.Ref작업범위 = "" Then Exit Sub
+   If Me.Ref출력 = "" Then
+      MsgBox "출력할 위치셀을 지정하세요.", vbCritical, "출력위치"
+      Exit Sub
+   End If
+   Set rng작업 = Range(Me.Ref작업범위)
+   Set rng출력 = Range(Me.Ref출력)
+   Cnt = rng작업.Rows.Count
+   
+   rng작업.Copy
+   If Me.chk서식복사 Then
+      rng출력.PasteSpecial xlPasteAll
+   Else
+      rng출력.PasteSpecial xlPasteValues
+   End If
+   Range(rng출력, rng출력.Offset(Cnt - 1, 0)).RemoveDuplicates 1
+   Application.CutCopyMode = False
+   Application.Goto rng출력
+   Unload Me
+End Sub

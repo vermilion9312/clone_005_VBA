@@ -1,0 +1,8 @@
+Private Sub chkAll_Click()
+   Dim i As Long
+   With Me.lst예약명단
+      For i = 0 To .ListCount - 1
+         .Selected(i) = chkAll.Value
+      Next
+   End With
+End Sub

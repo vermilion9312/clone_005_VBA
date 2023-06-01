@@ -1,0 +1,16 @@
+Option Explicit
+
+Function fn주문수량(주문일, 재고량, 판매평균)
+   Dim 수량
+   If Application.WorksheetFunction.Weekday(주문일) = 6 Then
+      수량 = (판매평균 * 4) - 재고량
+   Else
+      수량 = (판매평균 * 2) - 재고량
+   End If
+   
+   If 수량 < 0 Then
+      fn주문수량 = 0
+   Else
+      fn주문수량 = 수량
+   End If
+End Function

@@ -1,0 +1,5 @@
+Range("A1:D1").MergeCells = True
+? Range("A1").MergeCells
+Range("A2:D2").Merge
+Range("A2:D2").UnMerge
+? Range("B1").MergeArea.Address

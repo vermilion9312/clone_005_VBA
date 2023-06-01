@@ -1,0 +1,7 @@
+Sub sb¡Ÿ∫Ø∞Ê(cnt As Integer)
+   Dim i As Integer
+   
+   For i = 1 To cnt
+      wdApp.Selection.TypeParagraph
+   Next
+End Sub

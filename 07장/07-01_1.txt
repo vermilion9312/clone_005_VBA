@@ -1,0 +1,8 @@
+Sub IF_Ex1()
+   Dim iOk As Integer
+   
+   Range("A1:F10") = "엑셀"
+   iOk = MsgBox("시트 내용을 모두 지울까요?", vbYesNo, "확인")
+   If iOk = vbYes Then Cells.Clear
+   MsgBox "작업이 완료되었습니다."
+End Sub

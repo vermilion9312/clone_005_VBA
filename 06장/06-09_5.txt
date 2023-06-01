@@ -1,0 +1,9 @@
+Sheets("기초자료").Range("A1:H11").Copy
+Sheets("Sheet1").Range("A1").PasteSpecial
+
+Range("A2:B2").Delete Shift:=xlUp
+Range("C1:C11").Delete Shift:=xlToLeft
+Columns("E").Delete      ' Shift:=xlToLeft
+Range("A2:F2").Delete      ' Shift:=xlUp
+
+Sheets("Sheet1").Delete

@@ -1,0 +1,9 @@
+Sheets("Sheet1").Cells.Clear 
+
+Sheets("기초자료").Range("A1:B6").Copy
+Sheets("Sheet1").Paste Destination:=Range("A1")
+
+Sheets("Sheet1").Range("A1:A6").Copy
+Sheets("Sheet1").Range("B1").Insert Shift:=xlToRight
+
+Application.CutCopyMode = False

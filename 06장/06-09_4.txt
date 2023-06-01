@@ -1,0 +1,9 @@
+Sheets("기초자료").Select
+Range("A2:B4").Insert Shift:=xlDown
+Range("D2:E4").Insert Shift:=xlDown, CopyOrigin:=xlFormatFromRightOrBelow
+
+Columns("B:C").Insert xlToRight
+Columns("G:H").Insert xlToRight, xlFormatFromRightOrBelow
+
+Range("B:C, G:H").Delete
+Range("A2:E4").Delete

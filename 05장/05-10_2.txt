@@ -1,0 +1,9 @@
+Sub 상수테스트()
+    Const 비율 As Single = 0.01
+    
+    Sheets("Sheet1").Select
+    Range("a1") = Range("a1") * 비율
+    Range("a2") = Range("a2") * 비율
+    Range("a3") = Range("a3") * 비율
+    Range("a4") = Range("a4") * 비율
+End Sub

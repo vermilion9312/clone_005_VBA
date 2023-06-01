@@ -1,0 +1,35 @@
+Private Sub cmd명단출력_Click()
+   Dim R As Long, Cnt As Long, i As Long
+   Dim rngT As Range
+   
+   With Sheets("출력-강좌별")
+      .Range("C3") = Me.txt강좌명 & " (" & Me.txt강좌코드 & ")"
+      .Range("C4") = Format(Me.txt일자, "yy-mm-dd(aaa)")
+      .Range("C5") = Me.txt장소
+      .Range("G3") = Me.lst강좌명단.Column(5)
+      Set rngT = .Range("A8")
+      '--// 8행 이하 사용한 영역 삭제
+      .Range(rngT.Offset(1, 0), rngT.SpecialCells(xlLastCell)).Clear
+   End With
+      
+   With Me.lst예약명단
+      rngT.EntireRow.Copy
+      With rngT.Offset(1, 0).Resize(.ListCount - 1).EntireRow
+            .PasteSpecial Paste:=xlPasteFormats
+            .PasteSpecial Paste:=xlPasteFormulas
+      End With
+      Application.CutCopyMode = False
+      
+      For i = 0 To .ListCount - 1
+         rngT.Offset(i, 0) = i + 1
+         rngT.Offset(i, 1) = .List(i, 0)  '--// 고객코드
+         rngT.Offset(i, 3) = .List(i, 1)  '--// 고객명
+         rngT.Offset(i, 6) = Format(.List(i, 2), "yy-mm-dd(aaa)") '--//예약일
+         rngT.Offset(i, 7) = .List(i, 3)  '--// 비고
+         rngT.Offset(i, 8) = .List(i, 4)  '--// 참석여부
+      Next
+      
+      Sheets("출력-강좌별").PageSetup.PrintArea = "$A$1:$I$" & (rngT.Row + .ListCount)
+      Sheets("출력-강좌별").PrintOut preview:=True
+   End With
+End Sub

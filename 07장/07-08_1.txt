@@ -1,0 +1,7 @@
+Sub ErrObject_Ex1()
+   Dim Sum As Integer, vA As Integer
+   
+   vA = InputBox("2의 몇 승값을 구할까요?")
+   Sum = 2 ^ vA
+   MsgBox "2의 " & vA & "승 값은 " & Sum
+End Sub

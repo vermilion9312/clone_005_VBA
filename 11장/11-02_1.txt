@@ -1,0 +1,19 @@
+Private Sub cbo강사_DropButtonClick()
+   Dim rngT As Range
+   Dim i As Long
+
+   Set rngT = Sheets("@작업시트").Range("nm강사_출력")
+   
+   Sheets("설문자료").Range("tbl설문자료[#All]").AdvancedFilter Action:=xlFilterCopy, _
+        CopyToRange:=rngT, Unique:=True
+
+   i = 1
+   With Me.cbo강사
+      If rngT.Offset(1, 0) = "" Then
+         .ListFillRange = ""
+      Else
+         .ListFillRange = rngT.Offset(1, 0).Resize(rngT.CurrentRegion.Rows.Count - 1).Address(external:=True)
+      End If
+      .LinkedCell = Range("nm강사").Address
+   End With
+End Sub

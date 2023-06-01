@@ -1,0 +1,42 @@
+Sub sbExcelToAccess()
+   Dim adoConn As ADODB.Connection
+   Dim connString As String
+   Dim strSQL As String, strTable As String, DBname As String
+   
+   DBname = "\강의평가ver2007.accdb"
+'   DBname = "\강의평가.mdb"
+'   DBname = "\강의평가가져오기.accdb"
+   
+   '--// [tbl설문자료] 로 표 정의된 영역만 DB 영역으로 인식하기 위해,
+   '     해당 영역의 주소를 ' 시트명$셀영역' 형태로 변환함 :
+   strTable = Range("tbl설문자료[#All]").Address(False, False, external:=True)
+   strTable = Mid(strTable, InStr(strTable, "]") + 1)
+   strTable = Replace(strTable, "!", "$", , 1)
+   strTable = Replace(strTable, "'", "")
+   
+ On Error GoTo End_Rtn
+   ' 데이터 연결 객체 변수에 객체를 할당
+   Set adoConn = New ADODB.Connection
+'--// 엑셀 2007의 일정 영역을 DB로 연결
+   connString = "PROVIDER=Microsoft.ACE.OLEDB.12.0; " & _
+            "DATA SOURCE=" & ThisWorkbook.FullName & _
+            ";Extended Properties=""Excel 12.0;HDR=YES"";"
+   
+   adoConn.Open connString      '--// DB에 접속
+
+   If adoConn.State = adStateOpen Then ' DB가 연결된 경우만 처리
+      strSQL = "Insert Into 설문종합  In '" & ThisWorkbook.Path & DBname & "'  " & _
+                  "Select * From [" & strTable & "]  Where  Not Isnull(교육일)"
+      adoConn.Execute strSQL
+      adoConn.Close '--// DB 연결 종료
+   End If
+
+   Set adoConn = Nothing '--// 할당된 연결 객체 변수를 해제
+
+End_Rtn:
+   If Err.Number = 0 Then
+      MsgBox "엑셀 자료를 액세스 테이블에 모두 추가했습니다.", vbInformation, "작업완료"
+   Else
+      MsgBox Err.Description, vbCritical, "작업 오류"
+   End If
+End Sub

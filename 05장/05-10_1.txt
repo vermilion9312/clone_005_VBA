@@ -1,0 +1,7 @@
+? vbred
+range("A5").Font.Color = vbred
+range("A5").Font.Color = 255
+? xldown
+range("A5").end(xlDown ).Select 
+? vbcrlf
+msgbox "작업완료" & vbcrlf & "결과확인"

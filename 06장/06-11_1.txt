@@ -1,0 +1,7 @@
+Range("B2:D3").Cells.Clear
+Range("B2:D3").Value = "¿¢¼¿"
+Range("B2:D3").Borders.Weight = xlThick
+
+Range("B2:D3").Font.Color = vbRed
+Range("B2:D3").Interior.Color = RGB(255, 255, 0)
+Range("B2:D3").Borders.Color = QBColor(9)

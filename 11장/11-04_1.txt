@@ -1,0 +1,42 @@
+Sub sb분석차트()
+   Dim strChart As String
+   Dim k As ChartObject
+
+   For Each k In ActiveSheet.ChartObjects
+      If k.Name = "분석차트" Then k.Delete
+   Next
+   
+   ActiveSheet.Shapes.AddChart.Select
+   With ActiveChart
+     .SetSourceData Source:=Range("평가분석!$H$6:$I$16")
+     .ChartType = xlRadar  '방사형 차트
+     .ChartStyle = 4         '차트스타일 4번 적용
+     
+     With .SeriesCollection(1)
+        .XValues = "=" & Range("tbl문항내용[차트제목]").Address(external:=True)
+        .Name = "=""평균"""
+        .Format.Line.ForeColor.RGB = RGB(0, 200, 0)
+     End With
+     With .SeriesCollection(2)
+        .Name = "=" & Range("nm강사").Address(external:=True)
+        .Format.Line.ForeColor.RGB = RGB(200, 0, 0)
+     End With
+     
+     .HasTitle = True
+     .ChartTitle.Text = "강의 평가 설문 분석"
+     .ChartTitle.Characters.Font.Size = 12
+     .Axes(xlValue).MaximumScale = 5   '값 축 최대값
+     .Axes(xlValue).MajorUnit = 1         '값 축 주 눈금
+     .Axes(xlValue).MajorGridlines.Delete   '주눈금선 제거
+     
+     .Parent.RoundedCorners = True        '차트 영역 둥근 모서리 서식
+     .Parent.Name = "분석차트"             ' 차트 이름 변경
+   End With
+   With ActiveChart.Parent               '차트 위치 및 크기 조절
+      .Top = Range("B6").Top
+      .Left = Range("B6").Left
+      .Width = 350
+      .Height = 250
+      .TopLeftCell.Select
+   End With
+End Sub

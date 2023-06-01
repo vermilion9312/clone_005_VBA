@@ -1,0 +1,4 @@
+Range("B2").Select
+ActiveCell.CurrentRegion.Select
+Range("E3").CurrentRegion.Select
+Range("B2").CurrentRegion.Rows(1).Font.Color = vbRed

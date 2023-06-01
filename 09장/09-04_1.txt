@@ -1,0 +1,13 @@
+Private Sub UserForm_Initialize()
+   With Me.cbo沥纺亲格
+      .Clear
+      .AddItem "绊按内靛"
+      .AddItem "己疙"
+      .AddItem "家加"
+      .AddItem "楷遏贸"
+      .AddItem "林家"
+      .Text = "绊按内靛"
+   End With
+   
+   Call cmd八祸_Click
+End Sub

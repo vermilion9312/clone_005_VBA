@@ -1,0 +1,7 @@
+Private Sub cmdOk_Click()
+   With Me.lst상품
+      If .ListIndex < 0 Then Exit Sub
+      MsgBox "선택하신 상품은 " & Me.lst사용금액.Text & vbCr & _
+            .List(.ListIndex, 0) & "-" & .List(.ListIndex, 1)
+   End With
+End Sub

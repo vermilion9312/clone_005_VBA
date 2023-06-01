@@ -1,0 +1,16 @@
+Private Sub UserForm_Initialize()
+
+   Me.cbo주소.RowSource = "상품정보!B4:B8"
+
+   With Me.cbo직접추가
+      .AddItem "퀵배송"
+      .AddItem "택배"
+      .AddItem "매장수령"
+      .AddItem "기타"
+   End With
+   With Me.cbo여러열
+      .ColumnCount = 3
+      .RowSource = "상품정보!B4:D8"
+      .ColumnWidths = "40;60;80"
+   End With
+End Sub

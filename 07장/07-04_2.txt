@@ -1,0 +1,22 @@
+Sub For_Ex4()
+   Dim i As Long
+   Range("A4").Select
+   ActiveCell.Resize(, 10).Clear
+   For i = 0 To 9
+      ActiveCell.Offset(0, i) = i + 1
+      If i > 5 Then Exit For
+      ActiveCell.Offset(0, i).Font.Color = vbBlue
+   Next i
+   MsgBox i
+End Sub
+
+Sub For_Ex5()
+   Dim i As Long
+   Range("A5").Select
+   ActiveCell.Resize(, 10).Clear
+   For i = 9 To 0
+      ActiveCell.Offset(0, i) = i + 1
+      ActiveCell.Offset(0, i).Font.Color = vbBlue
+   Next i
+End Sub
+

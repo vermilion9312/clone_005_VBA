@@ -1,0 +1,17 @@
+Private Sub cbo정렬항목_Click()
+   Dim keyCol As Integer
+   Dim rngT As Range
+   Set rngT = Range("nm고객_출력").CurrentRegion
+   keyCol = Application.Match(Me.cbo정렬항목, rngT.Rows(1), 0) + rngT.Column - 1
+
+   With rngT.Parent.Sort
+      .SortFields.Clear
+      .SortFields.Add Key:=rngT.Parent.Cells(rngT.Row, keyCol), _
+            SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:=xlSortNormal
+      .SetRange rngT
+      .Header = xlYes
+      .MatchCase = False
+      .Orientation = xlTopToBottom
+      .Apply
+   End With
+End Sub

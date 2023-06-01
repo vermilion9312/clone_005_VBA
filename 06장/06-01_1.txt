@@ -1,0 +1,9 @@
+Sheets(2).Activate
+Sheets(Array("피벗분석", "요약차트", "전체자료")).Select
+MsgBox ActiveWindow.SelectedSheets.Item(2).Name
+Sheets("요약차트").Activate
+Sheets("전체자료").Select
+
+Range("B3:F10").Select
+Range("B4").Activate
+Range("B4").Select

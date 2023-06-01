@@ -1,0 +1,26 @@
+Sub sb삭제하기(strKey As String)
+   Dim C As Long, Cnt As Long
+   
+   '--// 세부사항 삭제
+   If Application.CountIf(Range("tbl견적서세부[문서번호]"), strKey) > 0 Then
+      With Range("tbl견적서세부").Parent.ListObjects("tbl견적서세부")
+         C = .ListColumns("문서번호").Index
+         .Range.AutoFilter Field:=C, Criteria1:=strKey
+         .DataBodyRange.SpecialCells(xlCellTypeVisible).EntireRow.Delete
+         .Range.AutoFilter
+      End With
+   End If
+   
+   '--// 견적서발급 시트 삭제
+   If Application.CountIf(Range("tbl견적서발급[문서번호]"), strKey) > 0 Then
+      With Range("tbl견적서발급").Parent.ListObjects("tbl견적서발급")
+         C = .ListColumns("문서번호").Index
+         .Range.AutoFilter Field:=C, Criteria1:=strKey
+         .DataBodyRange.SpecialCells(xlCellTypeVisible).EntireRow.Delete
+         .Range.AutoFilter
+      End With
+   End If
+     
+   MsgBox "문서번호 : " & strKey & "에 대한 " & _
+               vbCrLf & "삭제 작업이 되었습니다.", vbInformation, "삭제완료"
+End Sub

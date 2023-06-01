@@ -1,0 +1,7 @@
+Sub sb버튼표시(bShow As Boolean)
+   Me.cmd삭제.Visible = bShow
+   Me.cmd수정.Visible = bShow
+   Me.cmd신규.Visible = bShow
+   Me.cmd저장.Visible = Not bShow
+   Me.cmd취소.Visible = Not bShow
+End Sub

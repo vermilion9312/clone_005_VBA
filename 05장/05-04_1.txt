@@ -1,0 +1,9 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+   Dim rngK
+   Set rngK = Intersect(Target, Range("B3:G13"))
+   If rngK Is Nothing Then
+   Else
+       MsgBox "권한이 없어 수정불가"
+       Range("A2").Select
+   End If
+End Sub

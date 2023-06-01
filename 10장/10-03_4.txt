@@ -1,0 +1,7 @@
+Sub sb시트보호(Optional bValue As Boolean = True)
+   With Sheets("Main")
+      .cmd시트보호.Caption = "시트보호 해제"
+      .Protect DrawingObjects:=True, Contents:=True, AllowFormattingCells:=True
+      .EnableSelection = xlUnlockedCells
+   End With
+End Sub

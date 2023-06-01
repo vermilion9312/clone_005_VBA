@@ -1,0 +1,15 @@
+Sheets("Sheet1").Cells.Clear  
+Range("A1").AddComment "¿¢¼¿ ¸ÅÅ©·Î"
+Range("A1").Comment.Text Range("A1").Comment.Text & Chr(10) & Time()
+Range("A1").Comment.Visible = True
+
+MsgBox Range("A1").Comment.Text
+MsgBox Range("A1").Comment.Author
+
+Range("C1").AddComment Text:="±æ¹þ: " & Chr(10) & Now()
+Range("C1").Comment.Visible = True
+Range("C1").Comment.Shape.Select
+Selection.AutoSize = True
+
+Range("C1").Select
+Range("A1:C1").ClearComments

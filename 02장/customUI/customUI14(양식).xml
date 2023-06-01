@@ -1,0 +1,8 @@
+﻿<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">	
+  <ribbon startFromScratch="false">
+     <tabs>
+        <!-- your ribbon controls here  -->
+        
+     </tabs>
+  </ribbon>
+</customUI>

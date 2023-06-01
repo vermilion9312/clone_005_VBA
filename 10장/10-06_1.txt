@@ -1,0 +1,18 @@
+Private Sub cmd삭제_Click()
+   Dim iOk As Integer
+   Dim strKey As String
+   
+   strKey = Range("nmD_문서번호").Value
+   If strKey = "" Or Len(strKey) <> 8 Or Not (strKey Like "????-???") Then
+      MsgBox "현재 문서번호가 정해진 규칙과 달라 삭제할 수 없습니다." & _
+               vbCr & "확인 후 다시 작업하세요.", vbCritical
+      Exit Sub
+   End If
+   
+   iOk = MsgBox("현재 내용을 삭제할까요?", vbYesNo + vbQuestion, "삭제확인")
+   If iOk <> vbYes Then Exit Sub
+   
+   Call sb삭제하기(strKey)
+   
+   Call sb초기화
+End Sub
